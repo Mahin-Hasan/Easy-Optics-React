@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 
 const Login = () => {
     const { signIn } = useAuth();
+    const navigate = useNavigate();
+
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -12,7 +14,7 @@ const Login = () => {
         //get field values
         const email = event.target.email.value;
         const password = event.target.password.value;
-        console.log(email,  password);
+        console.log(email, password);
 
         //validation
         if (password.length < 6) {
@@ -22,8 +24,13 @@ const Login = () => {
 
         //create a new user
         signIn(email, password)
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+            .then(res => {
+                toast.success('User created successfully');
+                Navigate('/')
+            })
+            .catch(err => {
+                toast.error(err.message);
+            })
     }
 
     return (
