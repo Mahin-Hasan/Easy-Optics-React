@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 
 const Login = () => {
+
+
+
+    
     return (
         <>
             <div className="hero min-h-screen bg-base-200">
