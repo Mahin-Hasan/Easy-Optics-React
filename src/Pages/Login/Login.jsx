@@ -25,8 +25,8 @@ const Login = () => {
         //create a new user
         signIn(email, password)
             .then(res => {
-                toast.success('User created successfully');
-                Navigate('/')
+                toast.success('User logged in successfully');
+                navigate('/')
             })
             .catch(err => {
                 toast.error(err.message);
