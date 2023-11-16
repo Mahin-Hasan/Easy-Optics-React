@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 import useAuth from '../../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const Register = () => {
 
@@ -8,11 +9,24 @@ const Register = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+
+        //get field values
         const name = event.target.name.value;
         const email = event.target.email.value;
         const img = event.target.img.value;
         const password = event.target.password.value;
         console.log(name, email, img, password);
+
+        //validation
+        if (password.length < 6) {
+            toast.error(`password can not be less than 6 character`);
+            return;
+        }
+
+        //create a new user
+        createUser(email, password)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
     }
 
     return (
